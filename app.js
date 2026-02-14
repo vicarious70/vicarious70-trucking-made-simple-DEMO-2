@@ -56,7 +56,7 @@ const SETTINGS_DEFAULTS = {
   businessFixed: 1742,
   defaultMpg: 4.6,
   tank: 280,
-  fuelStopMin: 15,
+  fuelStopMin: 16,
   reserves: {
     factoring: 0.02,
     tax: 0.28,
