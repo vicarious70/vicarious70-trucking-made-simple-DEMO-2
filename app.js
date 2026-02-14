@@ -1,3 +1,4 @@
+import { supabase } from "./supabaseClient.js";
 // Trucking Made Simple — DEMO app.js (Settings + Scenario clean refresh)
 
 // ---------- Tiny helpers ----------
