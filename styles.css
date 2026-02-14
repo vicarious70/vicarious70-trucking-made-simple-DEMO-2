@@ -1,0 +1,162 @@
+:root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+body { margin: 0; background:#0b0c10; color:#f5f6fa; }
+.wrap { max-width: 980px; margin: 0 auto; padding: 16px; }
+.topbar { position: sticky; top: 0; background:#11131a; border-bottom:1px solid #232636; z-index:10; }
+.tabs { display:flex; gap:8px; overflow:auto; padding:10px; }
+.tab { white-space:nowrap; border:1px solid #2a2e44; background:#141828; color:#e9ecff; padding:10px 12px; border-radius:999px; cursor:pointer; }
+.tab.active { background:#2a2e44; }
+.screen { display:none; padding: 10px 2px 40px; }
+.screen.active { display:block; }
+h1 { margin: 6px 0 14px; font-size: 22px; }
+h2 { margin: 18px 0 10px; font-size: 16px; opacity: 0.9; }
+
+.grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+label { display:flex; flex-direction:column; gap:6px; font-size: 14px; }
+label.inline { flex-direction:row; align-items:center; gap:10px; margin-top: 24px; }
+input { padding:10px; border-radius:12px; border:1px solid #2a2e44; background:#0f1220; color:#f5f6fa; }
+
+.row { display:flex; gap:10px; margin-top: 14px; flex-wrap: wrap; }
+button { padding:10px 12px; border-radius:12px; border:1px solid #2a2e44; background:#141828; color:#e9ecff; cursor:pointer; }
+button.primary { background:#2a2e44; }
+button.danger { border-color:#7a2b2b; background:#2b1111; }
+
+.output { background:#0f1220; border:1px solid #2a2e44; border-radius:16px; padding:12px; margin-top: 14px; overflow:auto; }
+.hint { opacity:0.75; margin-top: 10px; }
+.list { display:flex; flex-direction:column; gap:10px; margin-top: 12px; }
+.list-item {
+  border:1px solid #2a2e44;
+  background:#0f1220;
+  border-radius:16px;
+  padding:12px;
+  cursor:pointer;
+}
+.list-item:active { transform: scale(0.99); }
+.list-title { font-weight: 700; margin-bottom: 6px; }
+.list-sub { opacity: 0.85; font-size: 14px; line-height: 1.3; }
+
+/* =========================
+   Plain Lock — Settings v1.0
+   (visual fence only)
+   ========================= */
+
+.lockNotice{
+  border:1px solid #2a2e44;
+  background:#0f1220;
+  padding:10px 12px;
+  border-radius:16px;
+  margin: 0 0 14px;
+  opacity: 0.95;
+}
+
+.lockBox{
+  border:1px solid #2a2e44;
+  background:#0f1220;
+  border-radius:16px;
+  padding:12px;
+  margin-top: 14px;
+}
+
+.lockTitle{
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.lockList{
+  margin: 0 0 0 18px;
+  padding: 0;
+}
+
+/* =========================
+   Plain Lock — Scenario v1.0
+   ========================= */
+
+.lockWarn{
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid #2a2e44;
+  background:#0f1220;
+  opacity: 0.95;
+  min-height: 18px;
+}
+
+.lockWarn.ok { border-color: #2a2e44; opacity: 0.65; }
+.lockWarn.warn { border-color: #7a6a2b; }
+.lockWarn.bad { border-color: #7a2b2b; }
+
+input.locked {
+  opacity: 0.75;
+}
+
+/* Trip dropdown sections */
+.trip-section {
+  margin: 10px 0;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.trip-toggle {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.04);
+  border: 0;
+  color: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.trip-content {
+  display: none;
+  padding: 12px;
+}
+
+#t_remitInfo {
+  width: 100%;
+  resize: vertical;
+}
+/* =========================
+   Mobile Override
+   ========================= */
+@media (max-width: 768px) {
+
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  body {
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  label {
+    font-size: 16px;
+  }
+
+  input {
+    font-size: 18px;
+    padding: 14px;
+  }
+
+  button {
+    font-size: 18px;
+    padding: 14px 16px;
+  }
+
+  .tab {
+    font-size: 16px;
+    padding: 12px 14px;
+  }
+
+  .row button {
+    width: 100%;
+  }
+}
