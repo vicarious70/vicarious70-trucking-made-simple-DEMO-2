@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trucking Made Simple — Test Run</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-screen="settings" type="button">Settings</button>
+      <button class="tab" data-screen="scenario" type="button">Scenario</button>
+      
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- SETTINGS -->
+    <section class="screen active" id="screen-settings">
+      <h1>Settings (Required)</h1>
+  <p class="lockNotice">
+  🔒 <strong>Plain Lock:</strong> Settings control <strong>preferences + defaults only</strong>.
+  They do <strong>not</strong> change Scenario/Actual formulas or historical truth.
+</p>
+
+      <div class="grid">
+        <label>Monthly Household
+          <input id="s_household" type="number" step="0.01" placeholder="5259">
+        </label>
+
+        <label>Monthly Business Fixed
+          <input id="s_businessFixed" type="number" step="0.01" placeholder="1742">
+        </label>
+
+        <label>Default MPG
+          <input id="s_defaultMpg" type="number" step="0.01" placeholder="4.60">
+        </label>
+
+        <label>Tank Capacity (gal)
+          <input id="s_tank" type="number" step="1" placeholder="280">
+        </label>
+
+        <label>Fuel Stop Minutes
+          <input id="s_fuelStopMin" type="number" step="1" placeholder="15">
+        </label>
+      </div>
+
+      <!-- Company Info (Auto-Saves) -->
+<h2>Company Info (Auto-Saves)</h2>
+<p class="hint">Used for Invoice + Email signatures.</p>
+
+<div class="grid">
+  <label>Your Name
+    <input id="s_ownerName" type="text" placeholder="e.g., Anthony Ford">
+  </label>
+
+  <label>Company Name
+    <input id="s_companyName" type="text" placeholder="e.g., Trucking Made Simple LLC">
+  </label>
+
+  <label>MC #
+    <input id="s_mcNumber" type="text" placeholder="e.g., 123456">
+  </label>
+
+  <label>DOT #
+    <input id="s_dotNumber" type="text" placeholder="e.g., 1234567">
+  </label>
+
+  <label>Phone
+    <input id="s_companyPhone" type="tel" placeholder="e.g., 555-555-5555">
+  </label>
+
+  <label>Email
+    <input id="s_companyEmail" type="email" placeholder="e.g., dispatch@yourcompany.com">
+  </label>
+</div>
+
+      <h2>Reserves (percent as decimals)</h2>
+      <div class="grid">
+        <label>Factoring
+          <input id="r_factoring" type="number" step="0.01" placeholder="0.02">
+        </label>
+        <label>Tax
+          <input id="r_tax" type="number" step="0.01" placeholder="0.28">
+        </label>
+        <label>Plates
+          <input id="r_plates" type="number" step="0.01" placeholder="0.05">
+        </label>
+        <label>IFTA
+          <input id="r_ifta" type="number" step="0.01" placeholder="0.05">
+        </label>
+        <label>Maintenance
+          <input id="r_maint" type="number" step="0.01" placeholder="0.07">
+        </label>
+        <label>Highway Use
+          <input id="r_highway" type="number" step="0.01" placeholder="0.05">
+        </label>
+        <label>Tires
+          <input id="r_tires" type="number" step="0.01" placeholder="0.05">
+        </label>
+      </div>
+
+      <div class="row">
+        <button id="btnLoadTestData" type="button">Load Test Data</button>
+        <button id="btnSaveSettings" class="primary" type="button">Save Settings</button>
+        <button id="btnResetSettings" type="button">Reset to Defaults</button>
+      </div>
+
+<div class="lockBox">
+  <div class="lockTitle">🔐 What Settings Can’t Change</div>
+  <ul class="lockList">
+    <li>Scenario math / formulas</li>
+    <li>O.T.R.A.F.F calculation method</li>
+    <li>Actual history / totals</li>
+  </ul>
+  <p class="hint" style="margin:8px 0 0;">
+    If it affects money math, time math, or truth — it does not belong in Settings.
+  </p>
+</div>
+
+      <p class="hint" id="settingsHint"></p>
+    </section>
+
+    <!-- SCENARIO -->
+    <section class="screen" id="screen-scenario">
+      <h1>Scenario (Estimate Only)</h1>
+
+  <p class="lockNotice">
+    🔒 <strong>Plain Lock:</strong> Scenario is <strong>estimate-only</strong>. It never writes to History/Totals.
+  Required fields must be filled. Return miles only count if “Returning Home/Yard?” is ON.
+</p>
+
+<div id="scenarioLockWarn" class="lockWarn" aria-live="polite"></div>
+
+      <div class="grid">
+        <label>Deadhead Miles (required)
+          <input id="sc_deadhead" type="number" step="0.1" placeholder="72">
+        </label>
+        
+        <label>Loaded Miles (required)
+          <input id="sc_loaded" type="number" step="0.1" placeholder="601">
+        </label>
+
+        <label>Fuel Price ($/gal) (editable)
+          <input id="sc_fuelPrice" type="number" step="0.01" placeholder="3.60">
+        </label>
+  
+      <label>MPG Used (Lifetime) (read-only)
+        <input id="sc_mpgUsed" type="number" step="0.01" readonly>
+      </label>
+
+      <label>Estimated Gallons (read-only)
+        <input id="sc_estGallons" type="number" step="0.01" readonly>
+      </label>
+
+      <label>Estimated Fuel Cost ($) (read-only)
+        <input id="sc_estFuelCost" type="number" step="0.01" readonly>
+      </label>
+
+        <label class="inline">
+          <input id="sc_returnToggle" type="checkbox">
+          Returning Home/Yard?
+        </label>
+
+        <label>Return Miles (0 allowed)
+          <input id="sc_returnMiles" type="number" step="0.1" placeholder="0" value="0">
+        </label>
+
+        <label>Gross Revenue (required)
+          <input id="sc_gross" type="number" step="0.01" placeholder="2600">
+        </label>
+
+        <label>Wait/Unload Hours (0 allowed)
+          <input id="sc_wait" type="number" step="0.1" placeholder="3" value="0">
+        </label>
+      </div>
+
+      <div class="row">
+        <button id="btnCalcScenario" class="primary" type="button">Calculate Scenario</button>
+      </div>
+
+      <div class="grid">
+  <label>Estimated Hours Away From Family (read-only)
+    <input id="sc_estHoursAway" type="number" step="0.1" readonly>
+  </label>
+</div>
+
+      <pre class="output" id="scenarioOut">—</pre>
+      <p class="hint">Scenario never updates history or totals.</p>
+    </section>
+
+    <!-- TRIP -->
+
+    
+    <!-- ACTUAL -->
+
+    <!-- TOTALS -->
+    
+  </main>
+
+  <!-- scripts only once, inside body -->
+  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+  <script>eruda.init();</script>
+  <script src="app.js?v=1002"></script>
+</body>
+</html>
